@@ -1,0 +1,237 @@
+body {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* HEADING */
+.header-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  background-color: #66ccff;
+}
+
+.logo {
+  display: flex;
+  width: 20%;
+  margin: 1vh 0 1vh 0;
+}
+
+.developer-info {
+  display: flex;
+  font-family: 'Carter One';
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.developer-name {
+  margin: 0 auto;
+  font-size: 2em;
+}
+
+.developer-position {
+  margin: 0 auto;
+  font-size: 1em;
+  color: #606060;
+}
+
+/* ARTICLE */
+.article {
+  margin: 0vh 20vw 10vh 20vw;
+  background-color: #f0f0f0;
+  border: 3px dashed white;
+  display: block;
+}
+
+.main-application {
+  display: block;
+}
+
+.main-image {
+  max-width: 100%;
+}
+
+.sites-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.app {
+  border: 1px dashed white;
+}
+
+.app-image {
+  max-width: 100%;
+}
+
+.app-link {
+  font-size: 0.7em;
+}
+
+.featured-work {
+  display: flex;
+  margin: 0 auto;
+  border: 2px dashed white;
+}
+
+.featured-work-text {
+  float: left;
+  font-size: 1em;
+  color: gray;
+}
+
+.footer-text {
+  font-family: 'proxima-novalight', Arial, Helvetica, sans-serif;
+  font-size: 0.6em;
+  color: gray;
+  bottom: 0;
+}
+
+/* For tablets: */
+@media only screen and (min-width: 600px) {
+  .developer-name {
+    font-size: 2.5em;
+  }
+
+  .developer-position {
+    font-size: 1.5em;
+  }
+
+  .logo {
+    width: 10%;
+  }
+
+  .main-image {
+    max-width: 90%;
+  }
+
+  .featured-work-text {
+    font-size: 1.5em;
+  }
+
+  .app {
+    padding: 0 2vw 0 2vw;
+  }
+
+  .app-image {
+    max-width: 100%;
+  }
+
+  .app-link {
+    font-size: 0.8em;
+  }
+
+  .footer-text {
+    font-size: 0.6em;
+  }
+
+  .sites-list {
+    flex-direction: row;
+  }
+}
+
+/* For desktop: min-width: 782px*/
+@media only screen and (min-width: 782px) {
+  .developer-name {
+    font-size: 3em;
+  }
+
+  .developer-position {
+    font-size: 1.4em;
+  }
+
+  .logo {
+    width: 8%;
+  }
+
+  .main-image {
+    max-width: 70%;
+  }
+
+  .featured-work-text {
+    font-size: 2em;
+  }
+
+  .app {
+    padding: 0 4vw 0 4vw;
+  }
+
+  .app-image {
+    max-width: 100%;
+  }
+
+  .app-link {
+    font-size: 1em;
+  }
+
+  .footer-text {
+    font-size: 0.8em;
+  }
+
+  .sites-list {
+    flex-direction: row;
+  }
+}
+
+/* For big screen desktop: min-width: 1000px*/
+@media only screen and (min-width: 1000px) {
+  .developer-name {
+    font-size: 3.5em;
+  }
+
+  .main-image {
+    max-width: 60%;
+  }
+
+  .app-image {
+    max-width: 100%;
+  }
+}
+
+/* For big screen desktop: min-width: 1100px*/
+@media only screen and (min-width: 1100px) {
+  .main-image {
+    max-width: 50%;
+  }
+
+  .app-image {
+     max-width: 90%;
+  }
+}
+
+/* For big screen desktop: min-width: 1200px*/
+@media only screen and (min-width: 1200px) {
+  .main-image {
+    max-width: 40%;
+  }
+
+  .app-image {
+    max-width: 80%;
+  }
+}
+
+/* For big screen desktop: min-width: 1400px*/
+@media only screen and (min-width: 1400px) {
+  .main-image {
+    max-width: 30%;
+  }
+
+  .app-image {
+    max-width: 70%;
+  }
+}
+
+/* For big screen desktop: min-width: 1700px*/
+@media only screen and (min-width: 1700px) {
+  .main-image {
+    max-width: 28%;
+  }
+
+  .app-image {
+    max-width: 60%;
+  }
+
+}
