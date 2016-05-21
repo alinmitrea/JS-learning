@@ -43,3 +43,13 @@ function testClosure(){
     var plusOne = makeAdder(1);
     console.log(plusOne(2));
 }
+
+var languages = [
+    { name: "JavaScript", fileExtension: ".js" },
+    { name: "TypeScript", fileExtension: ".ts" },
+    { name: "CoffeeScript", fileExtension: ".coffee" }
+];
+
+console.log(languages);
+console.table(languages);
+console.table(languages, "name"); // filtering columns
