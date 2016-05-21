@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>TabletApp Standalone</title>
+
+<link rel="stylesheet" type="text/css"
+      href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+<script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/5.0.0/build/ext-all-debug.js"></script>
+<script type="text/javascript">
+
+
+Ext.define('TabletApp.model.Base', {
+    extend: 'Ext.data.Model',
+
+
+    requires: [
+        'Ext.data.proxy.Rest', 'Ext.data.field.Number','Ext.MessageBox'
+    ],
+
+    schema: {
+        namespace: 'TabletApp.model'
+    },
+
+    fields: [
+        { name: 'id', type: 'int' }
+    ],
+
+    proxy: {
+        type: 'rest',
+        url: '/data/sessions.json' ,
+        reader: {
+            type: 'json',
+            rootProperty: 'data'
+        }
+    }
+});
+
+Ext.define('App.fields.SessionLevelIds', {
+    extend: 'Ext.data.field.Number',
+    alias: 'data.field.sessionlevelid',
+
+    validators: {
+        type: 'inclusion',
+        list: [1, 2, 3]
+    }
+});
+
+Ext.define('TabletApp.model.Session', {
+    extend: 'TabletApp.model.Base',
+
+    fields: [
+        {
+            name: 'title',
+            type: 'string',
+            validators: [
+                {
+                    type: 'length',
+                    min: 3,
+                    minOnlyMessage: 'Title must have at least 3 characters'
+                }
+            ]
+        },
+        { name: 'description', type: 'string' },
+        {
+            name: 'sessionLevelId',
+            type: 'sessionlevelid'
+        },
+        { name: 'interestCount', type: 'int'},
+        { name: 'approved', type: 'bool'},
+        { name: 'tagId', reference: 'Tag'}
+    ]
+});
+
+Ext.define('TabletApp.model.SessionTag', {
+    extend: 'TabletApp.model.Base',
+
+    fields: [
+        {
+            name: 'name',
+            type: 'string'
+        },{
+            name: 'sessionId',
+            reference: 'Session'
+        }
+    ]
+});
+
+
+
+Ext.application({
+    name: 'ProblemBindApp',
+
+    launch: function () {
+
+        var session = new TabletApp.model.Session({
+            id: 101,
+            title: 'first session',
+            sessionLevelId: 2
+        });
+
+        var sessionTag = new TabletApp.model.SessionTag({
+            id: 1001,
+            name: 'JavaScript'
+        });
+
+
+        var sessionTags = session.sessionTags();
+
+        sessionTags.add(sessionTag);
+
+        var data = session.getData(true);
+
+        debugger;
+
+    }
+});
+
+
+</script>
+
+
+</head>
+<body></body>
+</html>

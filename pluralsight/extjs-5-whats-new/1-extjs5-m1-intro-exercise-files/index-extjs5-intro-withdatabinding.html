@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Ext JS!</title>
+    <!--  WORK
+     <link
+         href="d:/APPS/extjs/ext-6.0.0/build/classic/theme-neptune/resources/theme-neptune-all.css"
+         rel="stylesheet" />
+     <script src="d:/APPS/extjs/ext-6.0.0/build/ext-all.js"></script>
+     <script src="app.js" type="text/javascript"></script>
+     -->
+
+    <!--  HOME -->
+    <!--<link-->
+    <!--href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/resources/theme-neptune-all.css"-->
+    <!--rel="stylesheet" />-->
+    <!--<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>-->
+
+
+    <!--  nodejs -->
+    <link href="theme-neptune-all.css" rel="stylesheet" />
+    <script src="ext-all-debug.js"></script>
+    <link rel="stylesheet" href="css/site-cssc-relative.css">
+
+    <script type="text/javascript">
+
+    Ext.application({
+        name: 'testapp',
+        requires: [
+            'Ext.grid.Panel',
+            'Ext.form.Panel',
+            'Ext.container.Viewport',
+            'Ext.data.proxy.Rest'
+
+        ],
+
+        launch: function () {
+
+            var myModel = Ext.define("Session", {
+                extend: 'Ext.data.Model',
+                fields: ['id', 'title', 'approved'],
+                proxy: {
+                    type: 'rest',
+                    url: '/data/sessions.json',
+                    reader: {
+                        type: 'json',
+                        rootProperty: 'data'
+                    }
+                }
+            });
+
+            Ext.define('SessionViewController', {
+                extend: 'Ext.app.ViewController',
+                alias: 'controller.sessionviewcontroller',
+
+                onCollapse: function(panel) {
+                    this.getViewModel().set("hideIdColumn",false);
+                },
+
+                onExpand: function(panel) {
+                    this.getViewModel().set("hideIdColumn",true);
+                }
+
+            });
+
+            Ext.define('SessionViewModel', {
+                extend: 'Ext.app.ViewModel',
+                alias: 'viewmodel.sessionviewmodel',
+                stores: {
+                    sessionsByTitle: {
+                        model: 'Session',
+                        autoLoad: true
+                    }
+                },
+                data: {
+                    hideIdColumn: true
+                }
+            });
+
+
+
+
+            Ext.define('MyGrid', {
+                extend: 'Ext.grid.Panel',
+                xtype: 'mygrid',
+                region: 'center',
+                flex: 2,
+                bind: {
+                    store: '{sessionsByTitle}',
+                    selection: '{selectedSession}'
+                },
+
+                columns: [
+                    {
+                        header: 'Id',
+                        dataIndex: 'id',
+                        bind: {
+                            hidden: '{hideIdColumn}'
+                        }
+                    },
+                    {
+                        header: 'Title',
+                        dataIndex: 'title',
+                        flex: 1
+                    }
+                ]
+            });
+
+            Ext.define('MyForm', {
+                extend: 'Ext.form.Panel',
+                xtype: 'myform',
+                controller: 'sessionviewcontroller',
+                title: 'Session Details',
+                flex: 1,
+                region: 'east',
+                collapsible: true,
+                collapseDirection: 'right',
+                split: true,
+                bodyPadding: 20,
+
+                listeners: {
+                    collapse: 'onCollapse',
+                    expand: 'onExpand'
+                },
+                items: [
+                    {
+                        xtype: 'textfield',
+                        anchor: '90%',
+                        fieldLabel: 'Title',
+                        bind: {
+                            value: '{selectedSession.title}'
+                        }
+                    }
+                ]
+            });
+
+
+
+            Ext.create('Ext.container.Viewport', {
+                layout: 'fit',
+                items: [
+                    {
+                        xtype: 'panel',
+                        layout: 'border',
+                        viewModel: 'sessionviewmodel',
+                        items: [
+                            {
+                                xtype: 'myform'
+                            },{
+                                xtype: 'mygrid'
+                            }
+                        ]
+                    }
+                ]
+
+            });
+
+
+        }
+    });
+</script>
+
+
+</head>
+<body></body>
+</html>

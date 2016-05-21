@@ -1,0 +1,101 @@
+﻿<!--ExtJS Fundamentals Course-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<link
+	href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/resources/theme-neptune-all.css"
+	rel="stylesheet" />
+<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>
+<script type="text/javascript">
+	Ext.application({
+		name : 'MyApp',
+		launch : function() {
+
+			var data = {
+				name : 'Don Griffin',
+				title : 'Senior Technomage',
+				company : 'Sencha Inc.',
+				drinks : [ 'Coffee', 'Water', 'More Coffee' ],
+				kids : [ {
+					name : 'Aubrey',
+					age : 17
+				}, {
+					name : 'Joshua',
+					age : 13
+				}, {
+					name : 'Cale',
+					age : 10
+				}, {
+					name : 'Nikol',
+					age : 5
+				}, {
+					name : 'Solomon',
+					age : 0
+				} ]
+			};
+
+			var tpl = new Ext.XTemplate('<table>', '<tpl for=".">', // process the data.kids node
+			'<tr><td>{#}</td><td>{name}</td></tr>', // use current array index to autonumber
+			'</tpl><table>');
+
+			var imageUploadPanel = Ext.create('Ext.form.Panel', {
+				title : 'Upload a Photo',
+				width : 400,
+				bodyPadding : 10,
+				frame : true,
+				renderTo : Ext.getBody(),
+				items : [ {
+					xtype : 'filefield',
+					name : 'photo',
+					fieldLabel : 'Photo',
+					labelWidth : 50,
+					msgTarget : 'side',
+					allowBlank : false,
+					anchor : '100%',
+					buttonText : 'Select Photo...'
+				} ],
+
+				buttons : [ {
+					text : 'Upload',
+					handler : function() {
+						var form = this.up('form').getForm();
+						if (form.isValid()) {
+							form.submit({
+								url : 'photo-upload.php',
+								waitMsg : 'Uploading your photo...',
+								success : function(fp, o) {
+									Ext.Msg.alert('Success', 'Your photo "'
+											+ o.result.file
+											+ '" has been uploaded.');
+								}
+							});
+						}
+					}
+				} ]
+			});
+
+			Ext.create('Ext.container.Viewport', {
+				items : [ {
+					xtype : 'panel',
+					tpl : tpl,
+					data : data.kids
+				}, imageUploadPanel ]
+			});
+		}
+	});
+</script>
+
+
+</head>
+
+
+<body>
+
+	<div id="MyDivId"></div>
+
+</body>
+</html>

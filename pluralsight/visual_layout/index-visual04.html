@@ -1,0 +1,219 @@
+﻿<!--ExtJS Fundamentals Course-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<!--  WORK 
+<link
+	href="d:/APPS/extjs/ext-6.0.0/build/classic/theme-neptune/resources/theme-neptune-all.css"
+	rel="stylesheet" />
+<script src="d:/APPS/extjs/ext-6.0.0/build/ext-all.js"></script>
+-->
+
+<!--  HOME 
+<link
+	href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/theme-neptune.css"
+	rel="stylesheet" />
+<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>
+-->
+
+<!--  nodejs -->
+<link href="theme-neptune-all.css" rel="stylesheet" />
+<script src="ext-all.js"></script>
+
+<script type="text/javascript">
+	Ext.Loader.setConfig({
+		enabled : true
+	});
+
+	Ext.application({
+		name : 'MyApp',
+		launch : function() {
+			Ext.define('SessionForm', {
+				extend: 'Ext.window.Window',
+				alias: 'widget.sessionform',
+				padding: 5,
+				width: 600,
+				title: 'Edit Sessions',
+				model: 'true',
+				items: [
+					{
+						xtype: 'form',
+						bodyPadding: 10,
+						title: '',
+						defaults: {
+							labelWidth: 90,
+							margin: '0 0 10 0',
+							anchor: '90%'
+						},
+						items:[
+							{
+								xtype: 'textfield',
+								name: 'title',
+								fieldLabel: 'Title',
+								allowBlank: false
+							},
+							{
+								xtype: 'checkboxfield',
+								name: 'approved',
+								fieldLabel: 'Approved'
+							}
+						]
+					},
+					{
+						xtype: 'container',
+						padding: '10 10 10 10',
+						layout: {
+							type: 'hbox',
+							align: 'middle',
+							pack: 'center'
+						},
+						items: [
+						    {
+						    	xtype: 'button',
+						    	text: 'Save',
+						    	formBind: true,
+						    	margin: '5 5 5 5',
+						    	handler: function(button){
+						    		var form = button.up().up().down('form');
+						    		form.updateRecord();
+						    		button.up('window').destroy();
+						    	}
+						    },
+						    {
+						    	xtype: 'button',
+						    	text: 'Cancel',
+						    	margin: '5 5 5 5',
+						    	handler: function(button){
+						    		button.up('window').destroy();
+						    	}
+						    }
+						]
+					}
+				]
+			});
+			
+			Ext.define('SessionGridPanel', {
+				extend : 'Ext.grid.Panel',
+				alias : 'widget.sessiongridpanel',
+				listeners: {
+					itemdblclick: function(gridpanel, record, item, e){
+						var formWindow = Ext.create('SessionForm');	
+						debugger;
+						
+						var form =  formWindow.down('form');
+						form.loadRecord(record);
+						
+						formWindow.show();
+					}
+				},
+				store : {
+					fields : [ 'id', {
+						name : 'title',
+						sortType : 'asUCText'
+					}, 'approved',  
+					{
+                        dateFormat: 'c',
+                        name: 'sessionTimeDateTime',
+                        sortType: 'asDate',
+                        type: 'date'
+                    },
+                    {
+                        convert: function(v, rec) {
+                            var convertIt = Ext.util.Format.dateRenderer('m/d/Y g:i a'),
+                                pretty = convertIt(rec.get("sessionTimeDateTime"));
+                            return pretty;
+                        },
+                        name: 'sessionTimePretty',
+                        type: 'string'
+                    }],
+					autoLoad : true,
+					autoSync : true,
+					proxy : {
+						type : 'rest',
+						url : 'getSessions', // url: 'http://127.0.0.1:1337/getSessions', works also like this if the server is returning a json
+						reader : {
+							type : 'json',
+							root : 'data'
+						}
+					},
+					sorters : [ {
+						property : 'title'
+					}, {
+						property : 'approved'
+					} ],
+					groupField : 'sessionTimeDateTime'
+				},
+				columns : [ {
+					xtype : 'gridcolumn',
+					dataIndex : 'id',
+					text : 'Id'
+				}, {
+					xtype : 'gridcolumn',
+					dataIndex : 'title',
+					text : 'Title',
+					flex : 1,
+					minWidth : 100,
+					width : 75
+				}, {
+					xtype : 'gridcolumn',
+					dataIndex : 'approved',
+					text : 'Approved'
+				},
+				{
+                    dataIndex: 'sessionTimePretty',
+                    text: 'Session Start Time',
+                    width: 180
+                }],
+				features: [
+				         {ftype: 'grouping',  groupHeaderTpl: [
+				                                                 '{[values.rows[0].get(\'sessionTimePretty\')]} (Session Count: {rows.length})'
+				                                                 ]}]
+
+			});
+
+			Ext.create('Ext.container.Viewport', {
+				layout : {
+					type : 'border'
+				//align: 'stretch'
+				},
+				items : [ {
+					region : 'west',
+					layout : {
+						type : 'vbox',
+						align : 'stretch'
+					},
+					flex : 1,
+					split : true,
+					items : [ {
+						xtype : 'sessiongridpanel',
+						flex : 3
+					}, {
+						xtype : 'splitter',
+						width : 1
+					}, {
+						html : '<b>Presenters</b>',
+						flex : 1,
+						xtype : 'panel'
+					} ]
+				}, {
+					region : 'center',
+					html : '<b>Details Panel</b>',
+					xtype : 'panel',
+					title : 'Details Panel'
+				} ]
+			});
+		}
+	});
+</script>
+
+
+</head>
+
+
+<body>
+</body>
+</html>

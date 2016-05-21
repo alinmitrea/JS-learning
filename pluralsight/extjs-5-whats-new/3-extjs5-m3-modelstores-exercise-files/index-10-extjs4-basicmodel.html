@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>TabletApp Standalone</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/5.0.0/build/ext-all-debug.js"></script>
+    <script type="text/javascript">
+
+        Ext.define('TabletApp.model.Base',{
+            extend: 'Ext.data.Model',
+            schema: {
+                namespace: 'TabletApp.model'
+            }
+        });
+
+        Ext.define('TabletApp.model.Session',{
+            extend: 'TabletApp.model.Base',
+
+            requires: ['Ext.data.proxy.Rest'],
+            fields: [
+                { name: 'id', type: 'int' },
+                { name: 'title', type: 'string' },
+                { name: 'description', type: 'string' },
+                { name: 'sessionLevelId', type: 'int'},
+                { name: 'interestCount', type: 'int'},
+                { name: 'approved', type: 'bool'},
+                { name: 'tagId', reference: 'Tag'}
+            ],
+
+            proxy: {
+                type: 'rest',
+                url: '/data/sessions.json' ,
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
+        });
+
+        Ext.application({
+            name: 'MyApp',
+            launch: function() {
+                Ext.create('Ext.container.Viewport',{
+                    layout: 'fit',
+                    items: [{
+                        xtype: 'grid',
+                        store: {
+                            model: 'Session',
+                            autoLoad: true
+                        },
+                        columns: [
+                            {
+                                text: 'Id',
+                                dataIndex: 'id'
+                            },{
+                                text: 'Title',
+                                dataIndex: 'title',
+                                flex: 1
+                            }
+                        ]
+                    }]
+                });
+
+            }
+        });
+
+
+    </script>
+
+
+</head>
+<body></body>
+</html>

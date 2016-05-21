@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>TabletApp Standalone</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/5.0.0/build/ext-all-debug.js"></script>
+    <script type="text/javascript">
+
+        var viewModel = Ext.create('Ext.app.ViewModel',{
+            data: {
+                mydata: 'data set from viewModel'
+            }
+        });
+
+        Ext.application({
+            name: 'MyApp',
+            launch: function() {
+
+                var panel = Ext.create('Ext.Panel',{
+                    renderTo: Ext.getBody(),
+                    layout: 'vbox',
+                    items: [
+                        {
+                            xtype: 'panel',
+                            bind: {
+                                html: '{mydata}'
+                            }
+                        },{
+                            xtype: 'textfield',
+                            bind: {
+                                value: '{mydata}',
+                                fieldLabel: 'My Data'
+                            }
+                        }
+                    ],
+
+                    viewModel: viewModel,
+                    width: 500,
+                    height: 150,
+                    title: 'our first app in ExtJS 5 course'
+
+                });
+
+
+
+                //panel.setHtml('this is our first text');
+
+
+
+
+        }
+        })
+
+
+    </script>
+
+
+</head>
+<body></body>
+</html>

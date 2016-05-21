@@ -1,0 +1,75 @@
+﻿<!--ExtJS Fundamentals Course-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<!--  HOME -->
+<link
+	href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/resources/theme-neptune-all.css"
+	rel="stylesheet" />
+<!--  WORK 
+<link
+	href="d:/APPS/extjs/ext-6.0.0/build/classic/theme-neptune/theme-neptune.css"
+	rel="stylesheet" />
+-->
+
+<!-- WORK 
+<script src="d:/APPS/extjs/ext-6.0.0/build/ext-all.js"></script>
+-->
+<!-- HOME: -->
+<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>
+
+<script type="text/javascript">
+	Ext.application({
+		name : 'MyApp',
+		launch : function() {
+			Ext.create('Ext.container.Viewport', {
+				layout : {
+					type : 'border'
+				//align: 'stretch'
+				},
+				items : [ {
+					region : 'west',
+					layout : {
+						type : 'vbox',
+						align : 'stretch'
+					},
+					flex : 1,
+					split : true,
+					items : [ {
+						html : '<b>Sessions Panel</b>',
+						flex : 2,
+						xtype : 'panel'
+					}, {
+						xtype : 'splitter',
+						width : 1
+					}, {
+						html : '<b>Speakers Panel</b>',
+						flex : 1,
+						xtype : 'panel'
+					} ]
+				}, {
+					region : 'center',
+					html : '<b>Details Panel</b>',
+					flex : 1,
+					xtype : 'panel',
+					title : 'Details Panel',
+					collapsible : true,
+					collapsed : true,
+					collapseDirection : 'right'
+				} ]
+			});
+		}
+	});
+</script>
+
+
+</head>
+
+
+<body>
+</body>
+</html>

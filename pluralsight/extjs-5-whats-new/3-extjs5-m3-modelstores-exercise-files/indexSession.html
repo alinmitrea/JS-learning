@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>TabletApp Standalone</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/5.0.0/build/ext-all-debug.js"></script>
+    <script type="text/javascript">
+
+
+
+        Ext.define('SessionStore', {
+            extend: 'Ext.data.Store',
+
+
+            fields: ['id','title'],
+            data : [
+                {id: '101',    title: 'Session 1 JavaScript'},
+                {id: '102',    title: 'Session 2 C#'},
+                {id: '103',    title: 'Session 3 Python'}
+            ]
+        });
+
+        var mystore = Ext.create('SessionStore');
+
+        Ext.application({
+            name: 'myapp',
+
+            launch: function () {
+                Ext.create('Ext.container.Viewport', {
+                    //session: this.session,
+                    layout: 'hbox',
+                    autoShow: true,
+                    items: [
+                        {
+                          html: 'abcd'
+                        }
+                        ,
+                        {
+                            xtype: 'grid',
+                            store: mystore,
+                            columns: ['id','title']
+                        }
+                    ]
+                });
+            }
+        });
+
+
+    </script>
+
+
+</head>
+<body></body>
+</html>

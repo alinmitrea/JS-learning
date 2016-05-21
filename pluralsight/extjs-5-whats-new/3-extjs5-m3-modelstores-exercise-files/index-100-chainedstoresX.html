@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>TabletApp Standalone</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+    <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/5.0.0/build/ext-all-debug.js"></script>
+    <script type="text/javascript">
+
+
+        Ext.define('TabletApp.model.Base', {
+            extend: 'Ext.data.Model',
+
+
+            requires: [
+                'Ext.data.proxy.Rest'
+            ],
+
+            schema: {
+                namespace: 'TabletApp.model'
+            },
+
+            fields: [
+                { name: 'id', type: 'int' }
+            ],
+
+            proxy: {
+                type: 'rest',
+                url: '/data/sessions.json' ,
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
+        });
+
+        Ext.define('TabletApp.model.Session', {
+            extend: 'TabletApp.model.Base',
+
+            fields: [
+                { name: 'title', type: 'string' },
+                { name: 'description', type: 'string' },
+                { name: 'sessionLevelId', type: 'int'},
+                { name: 'interestCount', type: 'int'},
+                { name: 'approved', type: 'bool'},
+                { name: 'tagId', reference: 'Tag'}
+            ]
+        });
+
+        var sessionHolder = Ext.create("Ext.data.Session");
+
+        var store1 = Ext.create('Ext.data.Store', {
+            requires: [
+                'Ext.data.proxy.Rest',
+                'Ext.grid.plugin.RowEditing'
+            ],
+            session: sessionHolder,
+            model: 'Session',
+            autoLoad: true,
+            sorters: [
+                {
+                    property: 'title'
+                }
+            ]
+        });
+
+        var store2 = Ext.create('Ext.data.Store', {
+            session: sessionHolder,
+            requires: [
+                'Ext.data.proxy.Rest',
+                'Ext.grid.plugin.RowEditing'
+            ],
+            model: 'Session',
+            autoLoad: true,
+            sorters: [
+                {
+                    property: 'id'
+                }
+            ]
+        });
+
+
+        Ext.application({
+            name: 'ProblemBindApp',
+            requires: [
+                'Ext.data.proxy.Rest',
+                'Ext.grid.plugin.RowEditing'
+            ],
+
+            launch: function () {
+                Ext.create('Ext.container.Viewport', {
+                    layout: 'border',
+                    items: [
+                        {
+                            xtype: 'toolbar',
+                            region: 'north',
+
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    text: 'Session Get Changes',
+                                    handler: function (button) {
+
+                                        var session = button.up().up().down('grid').getStore().getSession();
+                                        var changes = session.getChanges();
+                                        debugger;
+
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    text: 'Session Save Batch',
+                                    handler: function (button) {
+                                        var session = button.up().up().getSession();
+                                        var batch = session.getSaveBatch();
+                                        var pause = batch.getPauseOnException();
+                                        batch.pauseOnException(false);
+                                        batch.on({
+                                            complete: function () {
+                                                debugger;
+                                            },
+                                            exception: function () {
+                                                debugger;
+                                            }
+                                        });
+                                        batch.start();
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'grid',
+                            plugins: {
+                                ptype: 'rowediting',
+                                clicksToEdit: 1
+                            },
+                            title: 'sort by Title',
+                            region: 'north',
+                            store: store1,
+                            flex: 1,
+                            columns: [
+                                {
+                                    text: 'Id',
+                                    dataIndex: 'id'
+                                },
+                                {
+                                    text: 'Title',
+                                    dataIndex: 'title',
+                                    flex: 1,
+                                    editor: {
+                                        xtype: 'textfield',
+                                        allowBlank: false
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'grid',
+                            plugins: {
+                                ptype: 'rowediting',
+                                clicksToEdit: 1
+                            },
+                            title: 'sort by Id',
+                            flex: 1,
+                            region: 'center',
+                            store: store2,
+                            columns: [
+                                {
+                                    text: 'Id',
+                                    dataIndex: 'id'
+                                },
+                                {
+                                    text: 'Title',
+                                    dataIndex: 'title',
+                                    flex: 1,
+                                    editor: {
+                                        xtype: 'textfield',
+                                        allowBlank: false
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                });
+            }
+
+        });
+
+    </script>
+
+
+</head>
+<body></body>
+</html>

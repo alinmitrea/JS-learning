@@ -1,0 +1,78 @@
+﻿<!--ExtJS Fundamentals Course-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<link
+	href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/resources/theme-neptune-all.css"
+	rel="stylesheet" />
+<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>
+<script type="text/javascript">
+	Ext.application({
+		name : 'MyApp',
+		launch : function() {
+			Ext.create('Ext.container.Viewport', {
+				items : [ {
+					xtype : 'button',
+					text : 'disable',
+					handler : function() {
+						this.up().down("#myComponent").disable();
+					}
+				}, {
+					xtype : 'button',
+					text : 'enable',
+					handler : function() {
+						this.up().down("#myComponent").enable();
+					}
+				}, {
+					xtype : 'button',
+					text : 'hide',
+					handler : function() {
+						this.up().down("#myComponent").hide();
+					}
+				}, {
+					xtype : 'button',
+					text : 'show',
+					handler : function() {
+						this.up().down("#myComponent").show();
+					}
+				}, {
+					itemId : "myComponent",
+					tpl : 'Name: {first} {last}',
+					data : {
+						first : 'Alin',
+						last : 'Mitrea'
+					},
+					padding : 20,
+					width : 200,
+					height : 200,
+					style : {
+						border : '2px solid red'
+					},
+					resizable : true,
+					listeners : {
+						resize : {
+							fn : function(component, width, height) {
+								console.log("w/h" + width + " " + height);
+							}
+						}
+					}
+				} ]
+			})
+		}
+	});
+</script>
+
+
+</head>
+
+
+<body>
+
+	<div id="MyDivId"></div>
+
+</body>
+</html>

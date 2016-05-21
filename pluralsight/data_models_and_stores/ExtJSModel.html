@@ -1,0 +1,82 @@
+﻿<!--ExtJS Fundamentals Course-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<!--  HOME -->
+<link
+	href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/resources/theme-neptune-all.css"
+	rel="stylesheet" />
+<!--  WORK 
+<link
+	href="d:/APPS/extjs/ext-6.0.0/build/classic/theme-neptune/theme-neptune.css"
+	rel="stylesheet" />
+-->
+
+<!-- WORK 
+<script src="d:/APPS/extjs/ext-6.0.0/build/ext-all.js"></script>
+-->
+<!-- HOME: -->
+<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>"
+
+
+<script type="text/javascript">
+	Ext.define("SessionModel", {
+		extend : "Ext.data.Model",
+		fields : [ {
+			name : 'id',
+			type : 'int'
+		}, {
+			name : 'title',
+			type : 'string'
+		}, {
+			name : 'sessionLevel',
+			type : 'int'
+		}, {
+			name : 'approved',
+			type : 'bool',
+			defaultValue : false
+		} ],
+		validations : [ {
+			type : 'length',
+			field : 'title',
+			min : 3
+		}, {
+			type : 'inclusion',
+			field : 'sessionLevel',
+			list : [ 1, 2, 3 ]
+		} ]
+	});
+	
+	var mySession1 = Ext.create("SessionModel", {
+		title : 'C',
+		sessionLevel : 4
+	});
+	
+	if (!mySession1.isValid()){
+		var errors = mySession1.validate();
+		errors.each(function(rec){
+			console.log(rec);
+		});
+	} else{
+		debugger;
+	}
+	var mySession2 = Ext.create("SessionModel", {
+		title : 'Java',
+		sessionLevel : 3
+	});
+</script>
+
+
+</head>
+
+
+<body>
+
+	<div id="MyDivId"></div>
+
+</body>
+</html>

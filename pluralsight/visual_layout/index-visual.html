@@ -1,0 +1,69 @@
+﻿<!--ExtJS Fundamentals Course-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<!--  HOME -->
+<link
+	href="d:/APPS/extjs/ext-6.0.0/classic/theme-neptune/resources/theme-neptune-all.css"
+	rel="stylesheet" />
+<!--  WORK 
+<link
+	href="d:/APPS/extjs/ext-6.0.0/build/classic/theme-neptune/theme-neptune.css"
+	rel="stylesheet" />
+-->
+
+<!-- WORK 
+<script src="d:/APPS/extjs/ext-6.0.0/build/ext-all.js"></script>
+-->
+<!-- HOME: -->
+<script src="d:/APPS/extjs/ext-6.0.0/ext-all.js"></script>
+
+<script type="text/javascript">
+	var sessionsPanel = Ext.create('Ext.Panel',{
+		html: '<b>Sessions Panel</b>',
+		flex: 2
+	});
+	
+	var detailsPanel = Ext.create('Ext.Panel',{
+		html: '<b>Details Panel</b>',
+		flex: 3
+	});
+	
+	var speakersPanel = Ext.create('Ext.Panel',{
+		html: '<b>Speakers Panel</b>',
+		flex: 1
+	});
+	
+	var combinedSessionSpeakersPanel = Ext.create('Ext.Panel',{
+ 		layout: {
+ 			type: 'vbox'
+ 		},
+ 		items: [sessionsPanel, speakersPanel]
+	});
+	
+	Ext.application({
+		name : 'MyApp',
+		launch : function() {
+			Ext.create('Ext.container.Viewport', {
+				html : 'Howdy!',
+				layout: {
+					type: 'hbox',
+					align: 'stretch'
+				},
+				items: [combinedSessionSpeakersPanel, detailsPanel]
+			});
+		}
+	});
+</script>
+
+
+</head>
+
+
+<body>
+</body>
+</html>
