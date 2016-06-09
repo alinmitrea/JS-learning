@@ -58,7 +58,7 @@
                     <li><a href="contactus.html"><span class="fa fa-envelope-o"></span> Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li id="loginSpan"><a>
                         <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-2 vertical-center">
                     <p style="padding:40px;"></p>
-                    <a type="button" data-target="#reserveTableModal" data-toggle="modal" class="btn btn-warning btn-block">Reserve Table</a>
+                    <a id="reserveTableButton" type="button" class="btn btn-warning btn-block">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -382,6 +382,21 @@
             $("#carousel-play").click(function(){
                 $("#mycarousel").carousel('cycle');
             });
+
+            $('#loginSpan').click(function(){
+                $('#loginModal').modal('toggle');
+            });
+
+            $('#reserveTableButton').click(function(){
+                $('#reserveTableModal').modal('toggle');
+            });
+
+            /* Alternative solution:
+                $('#loginSpan').attr('data-toggle', 'modal');
+                $('#loginSpan').attr('data-target', '#loginModal');
+                $('#reserveTableButton').attr('data-toggle', 'modal');
+                $('#reserveTableButton').attr('data-target', '#reserveTableModal');
+            */
         });
     </script>
 </body>
