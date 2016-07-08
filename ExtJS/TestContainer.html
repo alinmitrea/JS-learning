@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>TabletApp Standalone</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/classic/theme-neptune/resources/theme-neptune-all.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/ext-all-debug.js"></script>
+    <script type="text/javascript">
+
+        Ext.application({
+            name: 'MyApp',
+            launch: function() {
+
+                var container = Ext.create('Ext.container.Container',{
+                    renderTo: Ext.getBody(),
+                    layout: {
+                        type: 'vbox',
+                        align: 'middle'
+                    },
+                    defaults: {
+                        width: '80%',
+                        minWidth: 320,
+                        maxWidth: 960
+                    },
+                    items: [
+                        {
+                            xtype: 'container',
+                            layout: {
+                                type: 'hbox',
+                                pack: 'end'
+                            },
+                            items: [
+                                {
+                                    xtype: 'splitbutton',
+                                    scale: 'medium',
+                                    text: 'Login Info',
+                                    iconCls: Ext.baseCSSPrefix
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'container',
+                            html: 'European Teachers Core'
+                        }
+                    ]
+                });
+        }
+        });
+
+    </script>
+
+
+</head>
+<body></body>
+</html>
