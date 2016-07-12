@@ -158,15 +158,6 @@ angular.module('confusionApp', [])
                  //Step 1: Create a JavaScript object to hold the comment from the form
                  $scope.commentGroup = {author:"", comment:"", rating:5};
 
-
-                 $scope.select = function(commentRating) {
-                     $scope.commentGroup.rating = commentRating;
-                 };
-
-                 this.isSelected = function (checkRating) {
-                     return ($scope.commentGroup.rating === checkRating);
-                   };
-
                  $scope.submitComment = function () {
                      //Step 2: This is how you record the date
                      //"The date property of your JavaScript object holding the comment" = new Date().toISOString();
