@@ -1,3 +1,11 @@
+REM Bower
+npm install -g bower
+rem create bower.json
+rem bower init
+bower install bootstrap -S
+bower install font-awesome -S
+bower install
+
 REM ------------------------------------------------------------------------------
 REM GRUNT
 REM ------------------------------------------------------------------------------
@@ -29,3 +37,8 @@ gulp
 gulp watch
 REM --- Angular Scope
 npm install gulp-ng-annotate --save-dev
+
+
+REM HOW TO SET PROXY
+REM %1 represents the password
+REM set http_proxy=http://mitrali:%1@158.169.131.13:8012
