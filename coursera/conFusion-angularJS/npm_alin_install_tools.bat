@@ -4,6 +4,7 @@ rem create bower.json
 rem bower init
 bower install bootstrap -S
 bower install font-awesome -S
+bower install angular-route -S
 bower install
 
 REM ------------------------------------------------------------------------------
@@ -40,5 +41,6 @@ npm install gulp-ng-annotate --save-dev
 
 
 REM HOW TO SET PROXY
-REM %1 represents the password
-REM set http_proxy=http://mitrali:%1@158.169.131.13:8012
+REM %1 represents the user
+REM %2 represents the password
+REM set http_proxy=http://%1:%2@158.169.131.13:8012
