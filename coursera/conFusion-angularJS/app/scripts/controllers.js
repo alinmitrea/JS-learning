@@ -101,7 +101,7 @@ angular.module('confusionApp')
             var promotion = menuFactory.getPromotion(0);
             $scope.promotion = promotion;
 
-            var leadership = corporateFactory.getLeader(1);
+            var leadership = corporateFactory.getLeader(0);
             $scope.leadership = leadership;
         }])
 
