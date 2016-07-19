@@ -253,7 +253,7 @@
      *              "enable": false
      *          },
      *          "css": "${app.output.resources}/${app.name}-all.css",
-     *          "js": "app.js",
+     *          "js": "ALIN___app.js",
      *          "microloader": {
      *              "path": "microloader.js",
      *              "embed": true,
