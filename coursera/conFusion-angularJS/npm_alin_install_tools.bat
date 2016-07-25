@@ -29,6 +29,9 @@ npm install grunt-contrib-watch --save-dev
 npm install grunt-contrib-connect --save-dev
 grunt serve
 
+REM install JSON server
+npm install json-server -g
+json-server --watch db.json
 REM ------------------------------------------------------------------------------
 REM GULP
 REM ------------------------------------------------------------------------------
