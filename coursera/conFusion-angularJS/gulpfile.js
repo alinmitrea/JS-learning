@@ -25,6 +25,10 @@ gulp.task('clean', function() {
     return del(['dist']);
 });
 
+gulp.task('clean-js', function() {
+    return del(['../json-server/public/**']);
+});
+
 // Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('usemin', 'imagemin','copyfonts');

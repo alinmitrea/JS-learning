@@ -6,7 +6,9 @@ bower install bootstrap -S
 bower install font-awesome -S
 bower install angular-route -S
 bower install angular-ui-router -S
+bower install angular-resource -S
 bower install
+
 
 REM ------------------------------------------------------------------------------
 REM GRUNT

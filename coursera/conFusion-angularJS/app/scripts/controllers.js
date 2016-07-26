@@ -7,16 +7,11 @@ angular.module('confusionApp')
             $scope.tab = 1;
             $scope.filtText = '';
             $scope.showDetails = false;
+            $scope.showMenu = true;
+            $scope.message = "Loading ...";
 
-            $scope.dishes = [];
-            menuFactory.getDishes()
-            .then(
-                function(response) {
-                    $scope.dishes = response.data;
-                }
-            );
+            $scope.dishes = menuFactory.getDishes().query();
 
-                        
             $scope.select = function(setTab) {
                 $scope.tab = setTab;
                 
@@ -77,15 +72,9 @@ angular.module('confusionApp')
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
             $scope.dish = {};
-            menuFactory.getDish(parseInt($stateParams.id,10))
-            .then(
-                function(response){
-                    $scope.dish = response.data;
-                    $scope.showDish = true;
-                }
-            );
-
-            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
+            $scope.showDish = true;
+            $scope.message="Loading ...";
+            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id, 10)});
 
         }])
 
@@ -108,15 +97,10 @@ angular.module('confusionApp')
 
         // implement the IndexController and About Controller here
         .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
-            $scope.dish = {};
+            $scope.showDish = true;
+            $scope.message="Loading ...";
 
-            menuFactory.getDish(0)
-            .then(
-                function(response){
-                    $scope.dish = response.data;
-                    $scope.showDish = true;
-                }
-            );
+            $scope.dish = menuFactory.getDishes().get({id:0});
 
             var promotion = menuFactory.getPromotion(0);
             $scope.promotion = promotion;
