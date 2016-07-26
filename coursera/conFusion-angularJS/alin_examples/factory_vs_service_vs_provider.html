@@ -1,0 +1,69 @@
+<!-- SOURCE: https://www.youtube.com/watch?v=J6qr6Wx3VPs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SERVICE VS FACTORY</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+
+</head>
+<!-- AUTHOR: JMadison.  ON:2015.12.16_1235PM                                 -->
+<!-- TABSIZE: 2 Spaces.                                                      -->
+<!-- This header belongs BELOW the <head></head> declaration.                -->
+<!--   10|       20|       30|       40|       50|       60|       70|       -->
+<!--5678901234567890123456789012345678901234567890123456789012345678901234567-->
+<body>
+<div id="angular_div"
+     data-ng-app="youtubeVideoApp" data-ng-controller="ModuleController" >
+
+    {{service}}
+    <br/>
+    {{factory}}
+    <br/>
+    {{provider}}
+
+</div> <!-- angular_div -->
+
+<script>
+	var app = angular.module('youtubeVideoApp', []);
+
+	var fun = function(){
+		this.name = "SomeName";
+		this.$get = function(){
+			this.name = "New Name";
+			return " Default fun.$get(). this.name = " + this.name;
+		};
+		return "fun () . this.name = " + this.name;
+	};
+
+	// Returns the actual function:
+	app.service( 'serviceExample', fun);
+
+	// Returns the output of the function's $get function:
+	app.provider( 'providerExample', fun);
+
+	// Returns the function's return value:
+	app.factory( 'factoryExample', fun);
+
+	/*
+	//This does not work:
+	function ModuleController($scope, serviceExample, factoryExample, providerExample){
+		$scope.service  = "service ==[" + serviceExample  + "]";
+		$scope.factory  = "factory ==[" + factoryExample  + "]";
+		$scope.provider = "provider==[" + providerExample + "]";
+	}
+	*/
+
+	//This substitution does work:
+	app.controller('ModuleController',
+	function($scope, serviceExample, factoryExample, providerExample){
+			$scope.service  = "service ==[" + serviceExample  + "]";
+			$scope.factory  = "factory ==[" + factoryExample  + "]";
+			$scope.provider = "provider==[" + providerExample + "]";
+	});
+
+	</script>
+</body>
+</html>
+<!--   10|       20|       30|       40|       50|       60|       70|       -->
+<!--5678901234567890123456789012345678901234567890123456789012345678901234567-->
