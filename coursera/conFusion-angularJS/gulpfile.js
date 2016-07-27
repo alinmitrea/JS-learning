@@ -25,10 +25,6 @@ gulp.task('clean', function() {
     return del(['dist']);
 });
 
-gulp.task('clean-js', function() {
-    return del(['../json-server/public/**']);
-});
-
 // Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('usemin', 'imagemin','copyfonts');
@@ -85,3 +81,13 @@ gulp.task('browser-sync', ['default'], function () {
         // Watch any files in dist/, reload on change
   gulp.watch(['dist/**']).on('change', browserSync.reload);
     });
+
+// Alin development
+gulp.task('json-server-delete-public', function() {
+    return del(['../.././json-server/public/**'], {force : true});
+});
+
+gulp.task('json-server-deploy', ['json-server-delete-public'], function(){
+    // first it runs json-server-delete-public then it run the next statement
+    gulp.src(['dist/**/*']).pipe(gulp.dest('../.././json-server/public'));
+});

@@ -42,6 +42,7 @@ npm install gulp --save-dev
 npm install jshint gulp-jshint jshint-stylish gulp-imagemin gulp-concat gulp-uglify gulp-minify-css gulp-usemin gulp-cache gulp-changed gulp-rev gulp-rename gulp-notify  browser-sync del --save-dev
 gulp
 gulp watch
+gulp json-server-deploy rem run the task json-server/public
 REM --- Angular Scope
 npm install gulp-ng-annotate --save-dev
 
