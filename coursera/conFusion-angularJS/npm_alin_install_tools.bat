@@ -58,6 +58,12 @@ npm install phantomjs karma-phantomjs-launcher karma-chrome-launcher --save-dev
 
 karma start karma.conf.js
 
+REM ------------------------------------------------------------------------------
+REM  Protractor
+REM ------------------------------------------------------------------------------
+npm install protractor -g
+webdriver-manager update
+
 REM HOW TO SET PROXY
 REM %1 represents the user
 REM %2 represents the password
