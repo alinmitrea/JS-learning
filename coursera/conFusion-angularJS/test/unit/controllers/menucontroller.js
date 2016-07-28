@@ -11,6 +11,11 @@ describe('Controller: MenuController', function () {
           // place here mocked dependencies
       $httpBackend = _$httpBackend_;
 
+      // Add these three following three lines
+      $httpBackend.whenGET('views/header.html').respond();
+      $httpBackend.whenGET('views/home.html').respond();
+      $httpBackend.whenGET('views/footer.html').respond();
+
       $httpBackend.expectGET("http://localhost:3000/dishes").respond([
         {
       "id": 0,

@@ -49,8 +49,8 @@ module.exports = function(config) {
     autoWatch: true,
 
     // start these browsers
-    // available browser launcherSs: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome','PhantomJS', 'PhantomJS_custom'],
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+     browsers: ['Chrome','PhantomJS', 'PhantomJS_custom'],
 
     // you can define custom flags
     customLaunchers: {
