@@ -142,14 +142,30 @@ angular.module('confusionApp')
                     }
                  );
 
-            var leadership = corporateFactory.getLeader(0);
-            $scope.leadership = leadership;
-        }])
+            $scope.showLeadership = false;
+            $scope.leadership = corporateFactory.getLeader().get({id:0})
+              .$promise.then(
+                 function(response){
+                     $scope.leadership = response;
+                     $scope.showLeadership = true;
+                 },
+                 function(response) {
+                     $scope.message = "Error: " + response.status + " " + response.statusText;
+                 }
+              );
+         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
-            var leadership = corporateFactory.getLeaders();
-            $scope.leadership = leadership;
-
+            $scope.showLeadership = false;
+            $scope.leadership = corporateFactory.getLeaders().query(
+                  function(response){
+                      $scope.leadership = response;
+                      $scope.showLeadership = true;
+                  },
+                  function(response) {
+                      $scope.message = "Error: " + response.status + " " + response.statusText;
+                  }
+               );
         }])
 
 ;
