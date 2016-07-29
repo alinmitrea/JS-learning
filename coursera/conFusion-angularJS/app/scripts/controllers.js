@@ -130,8 +130,17 @@ angular.module('confusionApp')
                     }
                 );
 
-            var promotion = menuFactory.getPromotion(0);
-            $scope.promotion = promotion;
+            $scope.showPromotion = false;
+            $scope.promotion = menuFactory.getPromotion().get({id:0})
+                 .$promise.then(
+                    function(response){
+                        $scope.promotion = response;
+                        $scope.showPromotion = true;
+                    },
+                    function(response) {
+                        $scope.message = "Error: " + response.status + " " + response.statusText;
+                    }
+                 );
 
             var leadership = corporateFactory.getLeader(0);
             $scope.leadership = leadership;

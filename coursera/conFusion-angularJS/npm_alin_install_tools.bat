@@ -56,13 +56,14 @@ npm install karma-cli -g
 npm install karma-jasmine --save-dev
 npm install phantomjs karma-phantomjs-launcher karma-chrome-launcher --save-dev
 
-karma start karma.conf.js
+karma start karma.conf.js rem run in test folder
 
 REM ------------------------------------------------------------------------------
 REM  Protractor
 REM ------------------------------------------------------------------------------
 npm install protractor -g
 webdriver-manager update
+protractor protractor.conf.js rem run in test folder
 
 REM HOW TO SET PROXY
 REM %1 represents the user
