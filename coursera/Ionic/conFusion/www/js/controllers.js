@@ -179,9 +179,16 @@ menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
 
 }])
 
-.controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
-
-  $scope.leaders = corporateFactory.query();
-  console.log($scope.leaders);
+.controller('AboutController', ['$scope', 'corporateFactory', 'baseURL', function($scope, corporateFactory, baseURL) {
+  $scope.baseURL = baseURL;
+  $scope.leadership = corporateFactory.query(
+      function(response){
+          $scope.leadership = response;
+          $scope.showLeadership = true;
+      },
+      function(response) {
+          $scope.message = "Error: " + response.status + " " + response.statusText;
+      }
+   );
 
 }]);
