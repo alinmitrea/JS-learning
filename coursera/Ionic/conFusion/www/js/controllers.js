@@ -217,6 +217,17 @@ angular.module('conFusion.controllers', [])
         $scope.popover.hide();
         $scope.openModal();
     };
+
+    $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+
+    $scope.submitComment = function () {
+        $scope.mycomment.date = new Date().toISOString();
+        $scope.dish.comments.push($scope.mycomment);
+        menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
+
+        $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+        $scope.closeModal();
+    }
 }])
 
 .controller('DishCommentController', ['$scope', 'menuFactory', function($scope,menuFactory) {
@@ -229,7 +240,7 @@ angular.module('conFusion.controllers', [])
         console.log($scope.mycomment);
 
         $scope.dish.comments.push($scope.mycomment);
-menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
+        menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
 
         $scope.commentForm.$setPristine();
 

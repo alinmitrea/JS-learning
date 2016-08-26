@@ -2,15 +2,16 @@
   <ion-header-bar>
     <h1 class="title">Submit Comment on Dish</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+      <button class="button button-clear" ng-click="closeModal()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doLogin()">
+    <form ng-submit="submitComment()">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Rating</span>
-          <select>
+          <select ng-model="mycomment.rating">
+            <option selected></option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -20,11 +21,11 @@
         </label>
         <label class="item item-input">
           <span class="input-label">Your Name</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="mycomment.author">
         </label>
         <label class="item item-input">
           <span class="input-label">Your Comment</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="text" ng-model="mycomment.comment">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Submit</button>
