@@ -11,6 +11,7 @@ angular.module('conFusion.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = $localStorage.getObject('userinfo','{}');
+  $scope.favoritesData = $localStorage.getObject('favoritesData','{}');
   $scope.reservation = {};
 
   // Create the reserve modal that we will use later
@@ -71,8 +72,7 @@ angular.module('conFusion.controllers', [])
   };
 
   $scope.saveFavorites = function(fav) {
-    console.log('saving favorites', fav);
-    $localStorage.storeObject('favorites',fav);
+    $localStorage.storeObject('favoritesData', fav);
   };
 })
 
@@ -260,8 +260,12 @@ angular.module('conFusion.controllers', [])
 
     $scope.baseURL = baseURL;
     $scope.shouldShowDelete = false;
-
-    $scope.favorites = $localStorage.getObject('favorites','{}');
+    if (favorites.length != 0) {
+       $scope.favorites = favorites;
+    }
+    else{
+       $scope.favorites = $localStorage.getObject('favoritesData','{}');
+    }
 
     $scope.dishes = dishes;
 
@@ -281,8 +285,9 @@ angular.module('conFusion.controllers', [])
 
         confirmPopup.then(function (res) {
             if (res) {
-                console.log('Ok to delete');
+                console.log('Ok to delete:' + index);
                 favoriteFactory.deleteFromFavorites(index);
+                $scope.saveFavorites(favoriteFactory.getFavorites());
             } else {
                 console.log('Canceled delete');
             }
