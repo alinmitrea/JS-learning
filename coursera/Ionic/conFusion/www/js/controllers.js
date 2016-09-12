@@ -11,7 +11,6 @@ angular.module('conFusion.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = $localStorage.getObject('userinfo','{}');
-  $scope.favoritesData = $localStorage.getObject('favoritesData','{}');
   $scope.reservation = {};
 
   // Create the reserve modal that we will use later
@@ -70,10 +69,6 @@ angular.module('conFusion.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-
-  $scope.saveFavorites = function(fav) {
-    $localStorage.storeObject('favoritesData', fav);
-  };
 })
 
 .controller('MenuController', ['$scope', 'dishes', 'menuFactory', 'favoriteFactory',
@@ -116,7 +111,6 @@ angular.module('conFusion.controllers', [])
     $scope.addFavorite = function (index) {
         console.log("index is " + index);
         favoriteFactory.addToFavorites(index);
-        $scope.saveFavorites(favoriteFactory.getFavorites());
         $ionicListDelegate.closeOptionButtons();
     }
 }])
@@ -260,12 +254,7 @@ angular.module('conFusion.controllers', [])
 
     $scope.baseURL = baseURL;
     $scope.shouldShowDelete = false;
-    if (favorites.length != 0) {
-       $scope.favorites = favorites;
-    }
-    else{
-       $scope.favorites = $localStorage.getObject('favoritesData','{}');
-    }
+    $scope.favorites = favorites;
 
     $scope.dishes = dishes;
 
@@ -287,7 +276,6 @@ angular.module('conFusion.controllers', [])
             if (res) {
                 console.log('Ok to delete:' + index);
                 favoriteFactory.deleteFromFavorites(index);
-                $scope.saveFavorites(favoriteFactory.getFavorites());
             } else {
                 console.log('Canceled delete');
             }
