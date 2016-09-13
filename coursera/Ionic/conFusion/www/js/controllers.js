@@ -112,7 +112,7 @@ angular.module('conFusion.controllers', [])
          $scope.takePicture = function() {
             $cordovaCamera.getPicture(options).then(function(imageData) {
                 $scope.registration.imgSrc = "data:image/jpeg;base64," + imageData;
-                console.log('Image URI: ' + $scope.registration.imgSrc);
+                console.log('$scope.registration.imgSrc: ' + $scope.registration.imgSrc);
             }, function(err) {
                 console.log(err);
             });
@@ -133,9 +133,11 @@ angular.module('conFusion.controllers', [])
                $cordovaImagePicker.getPictures(optionsSelectPicture)
                 .then(function (results) {
                   for (var i = 0; i < results.length; i++) {
-                    $scope.registration.imgSrc = results[i];
-                    console.log('Image URI: ' + results[i]);
-                    console.log($scope.registration.imgSrc);
+                    window.plugins.Base64.encodeFile(results[i], function(base64){
+                        $scope.registration.imgSrc = base64;
+                        console.log('file base64 encoding: ' + base64);
+                    });
+
                   }
                 }, function(error) {
                     $cordovaToast
