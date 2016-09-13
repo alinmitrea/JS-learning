@@ -6,6 +6,11 @@ ionic serve --lab REM see the pages in both iOS and Android
 
 REM ionic build needs java 8: set JAVA_HOME=c:\Progra~1\Java\jdk1.8.0_45\
 
+ionic plugin add de.appplant.cordova.plugin.local-notification
+ionic plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+ionic plugin add cordova-plugin-camera
+ionic plugin add org.apache.cordova.camera
+
 cordova plugin add --save ionic-plugin-keyboard
 ionic platform add android
 ionic build android
