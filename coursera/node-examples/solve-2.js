@@ -5,14 +5,14 @@ function solveRect(l,b) {
                 + l + " and b = " + b);
     rect(l,b, function(err,rectangle) {
         if (err) {
-	    console.log(err);
-	}
-	else {
-	    console.log("The area of a rectangle of dimensions length = "
-                 + l + " and breadth = " + b + " is " + rectangle.area());
+	        console.log(err);
+        }
+        else {
+            console.log("The area of a rectangle of dimensions length = "
+                     + l + " and breadth = " + b + " is " + rectangle.area());
             console.log("The perimeter of a rectangle of dimensions length = "
                  + l + " and breadth = " + b + " is " + rectangle.perimeter());
-	}
+        }
     });
 };
 
