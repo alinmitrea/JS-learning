@@ -1,0 +1,6 @@
+REM run from parent folder
+
+express node-express-gen
+cd node-express-gen
+npm install
+npm start
