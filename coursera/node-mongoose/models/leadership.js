@@ -2,9 +2,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-require('mongoose-currency').loadType(mongoose);
-var Currency = mongoose.Types.Currency;
-
 // create a schema
 var leaderSchema = new Schema({
     name: {
