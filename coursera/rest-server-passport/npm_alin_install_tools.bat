@@ -13,3 +13,4 @@ mongo
 use conFusion
 db.user.find().pretty()
 db.users.update({username:"admin"},{$set:{admin:true}})
+db.users.delete({username:"admin"})
