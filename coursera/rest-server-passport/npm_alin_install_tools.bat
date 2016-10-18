@@ -13,4 +13,19 @@ mongo
 use conFusion
 db.user.find().pretty()
 db.users.update({username:"admin"},{$set:{admin:true}})
-db.users.delete({username:"admin"})
+db.users.remove({username:"admin"})
+
+
+REM in postman:
+POST http://localhost:3000/users/register  --> in Body, select JSON format and put: {"username":"admin", "password":"abc"}
+POST http://localhost:3000/users/login --> get the token
+GET http://localhost:3000/users --> in Header set the x-access-token paramater using the above token
+{
+ "name": "pizza",
+ "image" : "this is the image",
+ "category" : "mains",
+ "label" : "Hot",
+ "price" : "2.22",
+ "description" : "ok desc"
+}
+
