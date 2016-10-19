@@ -20,6 +20,11 @@ REM in postman:
 POST http://localhost:3000/users/register  --> in Body, select JSON format and put: {"username":"admin", "password":"abc"}
 POST http://localhost:3000/users/login --> get the token
 GET http://localhost:3000/users --> in Header set the x-access-token paramater using the above token
+
+REM add user
+{"username":"admin", "password":"abc", "firstname": "Alin", "lastname":"Mitrea"}
+
+REM add dish
 {
  "name": "pizza",
  "image" : "this is the image",
@@ -27,5 +32,11 @@ GET http://localhost:3000/users --> in Header set the x-access-token paramater u
  "label" : "Hot",
  "price" : "2.22",
  "description" : "ok desc"
+}
+
+REM add comment
+{
+ "rating": 2,
+  "comment": "ok"
 }
 
