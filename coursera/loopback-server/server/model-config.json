@@ -3,6 +3,7 @@
     "sources": [
       "loopback/common/models",
       "loopback/server/models",
+      "../node_modules/loopback-ds-timestamp-mixin",
       "../common/models",
       "./models"
     ],
@@ -37,6 +38,10 @@
     "public": true
   },
   "Customer": {
+    "dataSource": "MongoDB",
+    "public": true
+  },
+  "Comments": {
     "dataSource": "MongoDB",
     "public": true
   }
