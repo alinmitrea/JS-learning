@@ -6,10 +6,10 @@ import 'rxjs/add/operator/toPromise';
 
 import {AppComponent}  from './app.component';
 import {CarService} from './cars/carservice';
-import {InputTextModule,DataTableModule,ButtonModule,DialogModule} from 'primeng/primeng';
+import {InputTextModule,DataTableModule,ButtonModule,DialogModule, FileUploadModule} from 'primeng/primeng';
 
 @NgModule({
-  imports:      [BrowserModule,FormsModule,HttpModule,InputTextModule,DataTableModule,ButtonModule,DialogModule],
+  imports:      [BrowserModule,FormsModule,HttpModule,InputTextModule,DataTableModule,ButtonModule,DialogModule, FileUploadModule],
   declarations: [AppComponent],
   bootstrap:    [AppComponent],
   providers:    [CarService]

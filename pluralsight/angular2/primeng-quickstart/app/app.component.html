@@ -34,4 +34,36 @@
             </div>
         </footer>
     </p-dialog>
+
+    <h2>A few buttons</h2>
+    <button pButton type="text" (click)="count()" label="Click"></button>
+    <button pButton type="text" (click)="count()" icon="fa-check" label="Click"></button>
+
+    <button pButton type="text" (click)="count()" icon="fa-check" iconPos="right" label="Click"></button>
+
+    <button pButton type="text" (click)="count()" icon="fa-check"></button>
+
+    <button pButton type="text" (click)="count()" icon="fa-check" [disabled]="true" label="Disabled"></button>
+
+    <button pButton type="button"  (click)="count()"  class="ui-button-info"  label="info"></button>
+
+    <button pButton type="button"  (click)="count()"  class="ui-button-danger"  label="danger"></button>
+
+    Number of clicks: {{clicks}}
+    <h2>Upload Example</h2>
+    <p-fileUpload name="myfile[]" url="http://localhost:3000/upload" multiple="multiple"></p-fileUpload>
+
+    <h2>Upload image, max 1MB</h2>
+    <p-fileUpload name="myfile[]" url="http://localhost:3000/upload" multiple="multiple"
+                  accept="image/*" maxFileSize="1000000">
+        <template pTemplate="toolbar">
+            <div>Upload 3 Files</div>
+        </template>
+        <template let-file pTemplate="file">
+            <div>Custom UI to display a file</div>
+        </template>
+        <template pTemplate="content">
+            <div>Custom UI to manage uploaded files</div>
+        </template>
+    </p-fileUpload>
 </div>

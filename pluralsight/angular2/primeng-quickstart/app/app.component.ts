@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Car} from './cars/car';
 import {CarService} from './cars/carservice';
+import {FileUploadModule} from 'primeng/primeng';
 
 class PrimeCar implements Car {
     constructor(public vin?, public year?, public brand?, public color?) {}
@@ -21,6 +22,12 @@ export class AppComponent {
     newCar: boolean;
 
     cars: Car[];
+
+    clicks: number = 0;
+
+    count() {
+        this.clicks++;
+    }
 
     constructor(private carService: CarService) { }
 
