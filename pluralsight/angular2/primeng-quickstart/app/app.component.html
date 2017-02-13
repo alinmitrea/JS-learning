@@ -56,14 +56,5 @@
     <h2>Upload image, max 1MB</h2>
     <p-fileUpload name="myfile[]" url="http://localhost:3000/upload" multiple="multiple"
                   accept="image/*" maxFileSize="1000000">
-        <template pTemplate="toolbar">
-            <div>Upload 3 Files</div>
-        </template>
-        <template let-file pTemplate="file">
-            <div>Custom UI to display a file</div>
-        </template>
-        <template pTemplate="content">
-            <div>Custom UI to manage uploaded files</div>
-        </template>
     </p-fileUpload>
 </div>
