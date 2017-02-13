@@ -12,6 +12,8 @@ import { ProductDetailComponent } from './products/product-detail.component';
 import { ProductFilterPipe } from './products/product-filter.pipe';
 import { StarComponent } from './shared/star.component';
 
+import { EditorModule, SharedModule } from 'primeng/primeng';
+
 @NgModule({
   imports: [
     BrowserModule,
