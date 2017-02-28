@@ -1,1 +1,0 @@
-# Migrating an Application to Component Directives

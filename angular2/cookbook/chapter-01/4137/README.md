@@ -1,1 +1,0 @@
-# Connecting Angular 1 and Angular 2 with UpgradeModule

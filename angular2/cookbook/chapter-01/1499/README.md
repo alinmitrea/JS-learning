@@ -1,1 +1,0 @@
-# Downgrading Angular 2 Components to Angular 1 Directives with downgradeComponent

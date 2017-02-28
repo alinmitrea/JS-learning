@@ -1,1 +1,0 @@
-# Normalizing Service Types
