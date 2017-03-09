@@ -6,7 +6,8 @@ import {EditorModule, SharedModule} from 'primeng/primeng';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = "say yes. more. often.";
+  // title = "say yes. more. often.";
+  title: string;
 
   products: any[] = [
     {

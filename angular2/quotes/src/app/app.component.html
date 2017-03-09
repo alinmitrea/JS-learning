@@ -1,12 +1,16 @@
-<div class="container text-center">
-  <h1 class="featurette-heading">
-    {{title}}
-  </h1>
+<div class="container">
+  <div class="featurette-heading" [innerHTML]="title">
+  </div>
   <h2 class="featurette-heading">
     <span class="text-muted">it will blow your mind.</span>
   </h2>
 
-  <p-editor [(ngModel)]="text" [style]="{'height':'320px'}"></p-editor>
+  <p-editor [(ngModel)]="title" [style]="{'height':'320px'}"></p-editor>
+
+  <p>
+    {{title}}
+  </p>
+
 
   <div class='table-responsive' *ngIf='false'>
     <table class='table'
