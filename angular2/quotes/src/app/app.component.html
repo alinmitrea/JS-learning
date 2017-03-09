@@ -1,0 +1,48 @@
+<div class="container text-center">
+  <h1 class="featurette-heading">
+    {{title}}
+  </h1>
+  <h2 class="featurette-heading">
+    <span class="text-muted">it will blow your mind.</span>
+  </h2>
+
+  <p-editor [(ngModel)]="text" [style]="{'height':'320px'}"></p-editor>
+
+  <div class='table-responsive' *ngIf='false'>
+    <table class='table'
+           *ngIf='products && products.length'>
+      <thead>
+      <tr>
+        <th>
+          <button class='btn btn-primary'
+                  (click)='toggleImage()'>
+            {{showImage ? 'Hide' : 'Show'}} Image
+          </button>
+        </th>
+        <th>Product</th>
+        <th>Code</th>
+        <th>Available</th>
+        <th>Price</th>
+        <th>5 Star Rating</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let product of products'>
+        <td>
+          <img *ngIf='showImage'
+               [src]='product.imageUrl'
+               [title]='product.productName'
+               [style.width.px]='imageWidth'
+               [style.margin.px]='imageMargin'>
+        </td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productCode | lowercase }}</td>
+        <td>{{ product.releaseDate }}</td>
+        <td>{{ product.price | currency:'USD':true:'1.2-2'}}</td>
+        <td>{{ product.starRating }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
