@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {EditorModule, SharedModule} from 'primeng/primeng';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +8,7 @@ import {EditorModule, SharedModule} from 'primeng/primeng';
 export class AppComponent {
   // title = "say yes. more. often.";
   title: string;
+  textClass: string = "blue_text";
 
   products: any[] = [
     {
@@ -31,4 +32,10 @@ export class AppComponent {
       "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
     }
   ];
+
+  selectColor(color: string): void {
+    this.textClass = color;
+    var contents = "selectedColor" + color;
+    console.log(contents);
+  }
 }

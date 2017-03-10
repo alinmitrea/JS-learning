@@ -5,4 +5,21 @@ h1 {
 
 h2 {
   font-size: 30px;
+  color:black;
+}
+
+
+.blue_text{
+  font-size: 30px;
+  color:blue;
+}
+
+.black_text{
+  font-size: 30px;
+  color:black;
+}
+
+.gray_text{
+  font-size: 30px;
+  color:gray;
 }

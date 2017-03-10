@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 export var AppComponent = (function () {
     function AppComponent() {
+        this.textClass = "blue_text";
         this.products = [
             {
                 "productId": 2,
@@ -33,6 +34,11 @@ export var AppComponent = (function () {
             }
         ];
     }
+    AppComponent.prototype.selectColor = function (color) {
+        this.textClass = color;
+        var contents = "selectedColor" + color;
+        console.log(contents);
+    };
     AppComponent = __decorate([
         Component({
             selector: 'app-root',
