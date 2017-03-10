@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 export var AppComponent = (function () {
     function AppComponent() {
-        this.textClass = "blue_text";
+        this.textClass = "black_text";
         this.products = [
             {
                 "productId": 2,

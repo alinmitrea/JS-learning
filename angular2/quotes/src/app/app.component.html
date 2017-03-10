@@ -1,11 +1,12 @@
 <div class="container">
-  <div [innerHTML]="title" class="{{textClass}}">
+  <div [innerHTML]="title" class="{{textClass}} jumbotron">
   </div>
   <h2 class="featurette-heading">
     <span class="text-muted">it will blow your mind.</span>
   </h2>
 
   <p-editor [(ngModel)]="title" [style]="{'height':'320px'}"></p-editor>
+
 
   <form>
     <label class="radio-inline">

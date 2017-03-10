@@ -6,9 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // title = "say yes. more. often.";
   title: string;
-  textClass: string = "blue_text";
+  textClass: string = "black_text";
 
   products: any[] = [
     {
