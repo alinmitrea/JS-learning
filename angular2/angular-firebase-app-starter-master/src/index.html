@@ -17,24 +17,5 @@
 </head>
 <body>
   <app-root>Loading...</app-root>
-
-  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-  <script>
-      // Initialize Firebase
-      var config = {
-          apiKey: "AIzaSyCOORebJjUsolOMEeP-MbjkIIoGIhcO_vQ",
-          authDomain: "learning-928b5.firebaseapp.com",
-          databaseURL: "https://learning-928b5.firebaseio.com",
-          projectId: "learning-928b5",
-          storageBucket: "learning-928b5.appspot.com",
-          messagingSenderId: "25619196848"
-      };
-      firebase.initializeApp(config);
-
-      var root = firebase.database().ref('messages/2');
-      root.on('value', function(snap){
-          console.log(snap.key, snap.val());
-      })
-  </script>
 </body>
 </html>

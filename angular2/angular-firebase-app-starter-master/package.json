@@ -14,6 +14,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "0.0.29",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
@@ -25,7 +26,7 @@
     "@angular/router": "^5.0.0",
     "@types/lodash": "^4.14.36",
     "@types/request": "0.0.30",
-    "angularfire2": "^4.0.0-rc.0",
+    "angularfire2": "^4.0.0-rc0",
     "core-js": "^2.4.1",
     "firebase": "^3.9.0",
     "firebase-queue": "^1.5.0",
@@ -50,7 +51,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
-    "ts-node": "~3.2.0",
+    "ts-node": "^3.2.2",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
   }
